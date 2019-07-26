@@ -1,7 +1,9 @@
 package com.cagdasalagoz.noteservice;
 
+import com.cagdasalagoz.noteservice.controller.NoteController;
 import com.cagdasalagoz.noteservice.model.Note;
-import com.cagdasalagoz.noteservice.model.ResponseModel;
+import model.ResponseModel;
+import model.ResultCode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

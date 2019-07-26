@@ -1,10 +1,9 @@
-package com.cagdasalagoz.noteservice.model;
+package model;
 
-import com.cagdasalagoz.noteservice.ResultCode;
-
-public class ResponseModel {
+public class ResponseModel<T> {
     private int code;
     private String message;
+    private T relatedObject;
 
     public ResponseModel(int code, String message) {
         this.code = code;
@@ -12,6 +11,12 @@ public class ResponseModel {
     }
 
     public ResponseModel(ResultCode resultCode){
+        this.code = resultCode.getCode();
+        this.message =  resultCode.getMessage();
+    }
+
+    public ResponseModel(ResultCode resultCode, T relatedObject) {
+        this.relatedObject = relatedObject;
         this.code = resultCode.getCode();
         this.message =  resultCode.getMessage();
     }
@@ -30,5 +35,13 @@ public class ResponseModel {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public T getRelatedObject() {
+        return relatedObject;
+    }
+
+    public void setRelatedObject(T relatedObject) {
+        this.relatedObject = relatedObject;
     }
 }

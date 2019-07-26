@@ -1,8 +1,9 @@
-package com.cagdasalagoz.noteservice;
+package com.cagdasalagoz.noteservice.controller;
 
 import com.cagdasalagoz.noteservice.model.Note;
-import com.cagdasalagoz.noteservice.model.ResponseModel;
 import com.cagdasalagoz.noteservice.repository.NoteRepository;
+import model.ResponseModel;
+import model.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;

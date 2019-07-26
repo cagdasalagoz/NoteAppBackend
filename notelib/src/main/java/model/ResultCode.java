@@ -1,4 +1,4 @@
-package com.cagdasalagoz.noteservice;
+package model;
 
 public enum ResultCode {
     SUCCESS(200, "Success"),
@@ -6,6 +6,7 @@ public enum ResultCode {
     FAIL_INVALID_CONTENT(102, "You've entered an invalid content for your note."),
     FAIL_SUBJECT_TOO_LONG(103, "Subject is too long."),
     FAIL_CONTENT_TOO_LONG(104, "Content is too long."),
+    FAIL_WRONG_CREDENTIALS(105, "Wrong login information.") ;
     ;
     private int code;
     private String message;
