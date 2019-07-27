@@ -1,4 +1,4 @@
-package com.cagdasalagoz.authservice.model;
+package com.cagdasalagoz.authservice.model.request;
 
 public class LoginRequest {
     private String username;

@@ -1,16 +1,19 @@
 package com.cagdasalagoz.authservice.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Session {
-    @Id
-    public String id;
 
-    private LocalDate createTime;
+    @Id
+    private String id;
     private String username;
     private String sessionId;
+    private LocalDate createTime;
+    private LocalDate expireTime;
 
     public Session() {
     }
@@ -52,5 +55,13 @@ public class Session {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public LocalDate getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(LocalDate expireTime) {
+        this.expireTime = expireTime;
     }
 }

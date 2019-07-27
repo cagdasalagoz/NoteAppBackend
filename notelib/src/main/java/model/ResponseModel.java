@@ -1,9 +1,12 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseModel<T> {
     private int code;
     private String message;
-    private T relatedObject;
+    private T content;
 
     public ResponseModel(int code, String message) {
         this.code = code;
@@ -16,7 +19,7 @@ public class ResponseModel<T> {
     }
 
     public ResponseModel(ResultCode resultCode, T relatedObject) {
-        this.relatedObject = relatedObject;
+        this.content = relatedObject;
         this.code = resultCode.getCode();
         this.message =  resultCode.getMessage();
     }
@@ -37,11 +40,11 @@ public class ResponseModel<T> {
         this.message = message;
     }
 
-    public T getRelatedObject() {
-        return relatedObject;
+    public T getContent() {
+        return content;
     }
 
-    public void setRelatedObject(T relatedObject) {
-        this.relatedObject = relatedObject;
+    public void setContent(T content) {
+        this.content = content;
     }
 }

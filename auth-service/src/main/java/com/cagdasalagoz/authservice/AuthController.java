@@ -1,13 +1,19 @@
 package com.cagdasalagoz.authservice;
 
-import com.cagdasalagoz.authservice.model.LoginRequest;
+import com.cagdasalagoz.authservice.model.Session;
 import com.cagdasalagoz.authservice.model.User;
+import com.cagdasalagoz.authservice.model.request.LoginRequest;
 import com.cagdasalagoz.authservice.repository.SessionRepository;
 import com.cagdasalagoz.authservice.repository.UserRepository;
 import model.ResponseModel;
 import model.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
 
 
 @RestController
@@ -44,11 +50,30 @@ public class AuthController {
 
         String sessionId = AuthUtil.generateRandomSessionId();
 
-        ResponseModel responseModel = new ResponseModel(ResultCode.SUCCESS);
-        //TODO FIX THIS
-        responseModel.setRelatedObject(sessionId);
+        ResponseModel<Session> responseModel = new ResponseModel<>(ResultCode.SUCCESS);
+
+        Session session = new Session();
+        session.setSessionId(sessionId);
+
+        responseModel.setContent(session);
+        saveSessionToMongo(user.getUsername(), sessionId);
+
 
         return responseModel;
+    }
+
+    private void saveSessionToMongo(String username, String sid) {
+        Session session = new Session();
+
+        LocalDate now = LocalDate.now();
+        LocalDate expire = now.plusDays(1);
+
+        session.setUsername(username);
+        session.setSessionId(sid);
+        session.setCreateTime(now);
+        session.setExpireTime(expire);
+
+        sessionRepository.save(session);
     }
 
 

@@ -5,8 +5,7 @@ import org.springframework.data.annotation.Id;
 public class Note {
 
     @Id
-    public String id;
-
+    private String id;
     private String subject;
     private String content;
 
