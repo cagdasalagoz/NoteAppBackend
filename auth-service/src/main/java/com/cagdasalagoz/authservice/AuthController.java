@@ -1,12 +1,12 @@
 package com.cagdasalagoz.authservice;
 
-import com.cagdasalagoz.authservice.model.Session;
 import com.cagdasalagoz.authservice.model.User;
 import com.cagdasalagoz.authservice.model.request.LoginRequest;
 import com.cagdasalagoz.authservice.repository.SessionRepository;
 import com.cagdasalagoz.authservice.repository.UserRepository;
 import model.ResponseModel;
 import model.ResultCode;
+import model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +60,24 @@ public class AuthController {
 
 
         return responseModel;
+    }
+
+
+    @PostMapping("/checkSessionId")
+    public ResponseModel checkSessionId(@RequestBody Session session) {
+
+        Session sessionRecord = sessionRepository.getSessionBySessionId(session.getSessionId());
+
+        if (sessionRecord == null) {
+            return new ResponseModel(ResultCode.FAIL_INVALID_SESSION_ID);
+        }
+
+        if(LocalDate.now().isAfter(sessionRecord.getExpireTime())){
+            return new ResponseModel(ResultCode.FAIL_SESSION_EXPIRED);
+        }
+
+        return new ResponseModel(ResultCode.SUCCESS);
+
     }
 
     private void saveSessionToMongo(String username, String sid) {

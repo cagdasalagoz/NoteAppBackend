@@ -1,4 +1,4 @@
-package com.cagdasalagoz.authservice.model;
+package model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;

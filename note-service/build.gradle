@@ -17,6 +17,16 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	//implementation group: 'org.springframework.cloud', name: 'spring-cloud-commons', version: '2.1.2.RELEASE'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.1.2.RELEASE'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.1.2.RELEASE'
+
+	implementation 'io.github.openfeign:feign-okhttp:9.3.1'
+	implementation 'io.github.openfeign:feign-core:10.2.3'
+	implementation 'io.github.openfeign:feign-gson:9.3.1'
+	implementation 'io.github.openfeign:feign-slf4j:9.3.1'
+
 	compile 'com.cagdasalagoz:notelib:0.0.1-SNAPSHOT'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
